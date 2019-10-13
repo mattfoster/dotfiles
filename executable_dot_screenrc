@@ -1,0 +1,26 @@
+termcapinfo xterm*|Eterm|mlterm|rxvt 'hs:ts=\E]0;:fs=\007:ds=\E]0;screen\007'
+
+hardstatus alwayslastline 
+hardstatus string '%{gk}[ %{G}%H %{g}][%= %{wk}%?%-Lw%?%{=b kR}(%{W}%n*%f %t%?(%u)%?%{=b kR})%{= kw}%?%+Lw%?%?%= %{g}]%{=y C}[%d/%m %c]%{W}'
+
+setenv LC_CTYPE en_GB.UTF-8
+defutf8 on
+
+autodetach            on
+crlf                  off
+hardcopy_append       on
+
+startup_message       off
+vbell                 off
+
+defscrollback         10000
+silencewait           15
+
+activity "%c activity -> %n%f %t"
+bell "%c bell -> %n%f %t^G"
+vbell_msg " *beep* "
+
+bind ~ activity       "%c activity -> %n%f %t"
+bind * activity       "%c activity -> %n%f %t"
+
+# shell                 /sw/bin/zsh
