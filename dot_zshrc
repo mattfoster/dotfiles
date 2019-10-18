@@ -1,0 +1,11 @@
+
+export ZPLUG_HOME=/usr/local/opt/zplug
+source $ZPLUG_HOME/init.zsh
+
+# Listed on the zplug home page
+zplug "tcnksm/docker-alias", use:zshrc
+zplug "plugins/docker",   from:oh-my-zsh
+zplug "~/.zsh", from:local, use:"*.zsh"
+
+#zplug load --verbose
+zplug load
