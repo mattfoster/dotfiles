@@ -62,3 +62,19 @@ function whois {
 
     command whois "$host" "$@"
 }
+
+# Pipe curl through pager
+function cl {
+    curl -ik "$@" | less
+}
+
+# Proxy curl to burp or mitmproxy
+function pcurl {
+    http_proxy=127.0.0.1:8080 https_proxy=127.0.0.1:8080 curl -ik "$@"
+}
+
+# View headers from a GET (not HEAD)
+function headers {
+    curl -I -X GET "$@"
+}
+
