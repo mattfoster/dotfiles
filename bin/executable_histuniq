@@ -1,0 +1,28 @@
+#!/usr/bin/env ruby
+
+require "nkf"
+
+filename = "#{ENV["HOME"]}/.history"
+lines = []
+
+File.foreach(filename) do |line|
+  if NKF.guess(line) == NKF::ASCII
+    lines << line.strip
+  else
+    puts "ignored: #{line}"
+  end
+end
+
+uniqed = lines.uniq
+
+blacklist = uniqed.select{|line|
+  line.start_with?("D=")
+}
+
+filtered = (uniqed - blacklist).unshift(blacklist.last)
+
+result = filtered.join("\n").concat("\n")
+
+File.write(filename, result)
+File.write(filename+".bk", result)
+

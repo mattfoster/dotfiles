@@ -1,0 +1,21 @@
+#! /bin/bash -e
+
+projects="${HOME}/Documents/"
+date=$(date "+%Y-%m-%d")
+
+echo "[?] Enter project name:"
+read name
+
+if [[ -z $name ]]; then
+  echo "[x] missing project name"
+  exit 1
+fi
+
+dirname="${date}-${name}"
+echo "[*] Creating ${dirname}"
+fulldirname="${projects}/${date}-${name}"
+mkdir -p "${fulldirname}"
+
+echo "[√] done. cding."
+cd $fulldirname
+exec $SHELL
