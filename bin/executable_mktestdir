@@ -3,8 +3,12 @@
 projects="${HOME}/Documents/"
 date=$(date "+%Y-%m-%d")
 
-echo "[?] Enter project name:"
-read name
+if [[ ! -z $1 ]]; then
+  name=$1
+else
+  echo "[?] Enter project name:"
+  read name
+fi
 
 if [[ -z $name ]]; then
   echo "[x] missing project name"
