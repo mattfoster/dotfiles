@@ -13,6 +13,7 @@ zplug "zsh-users/zsh-history-substring-search"
 zplug "zsh-users/zsh-autosuggestions"
 zplug 'wfxr/forgit'
 zplug 'tysonwolker/iterm-tab-colors'
+zplug "zdharma/zsh-diff-so-fancy", as:command, use:bin/git-dsf
 
 
 # Install plugins if there are plugins that have not been installed
@@ -24,4 +25,3 @@ if ! zplug check --verbose; then
 fi
 
 zplug load
-
