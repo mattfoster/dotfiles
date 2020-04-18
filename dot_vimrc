@@ -22,10 +22,10 @@
 " Bundle: https://github.com/fatih/vim-go.git
 " Bundle: tpope/vim-pathogen
 " Bundle: https://github.com/w0rp/ale.git
+" Bundle: https://github.com/junegunn/goyo.vim
+" Bundle: https://github.com/junegunn/limelight.vim
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 call pathogen#infect()
-
-set nocompatible
 
 " allow backspacing over everything in insert mode
 set backspace=indent,eol,start
@@ -234,3 +234,8 @@ let g:ctrlp_user_command = 'ag %s -i --nocolor --nogroup --hidden
 let g:ale_linters                 = { 'perl': ['perl', 'perlcritic'] }
 let g:ale_perl_perl_options       = '-cW -Ilib -I./'
 let g:ale_perl_perlcritic_options = '--stern'
+
+"autocmd! User GoyoEnter Limelight
+"autocmd! User GoyoLeave Limelight!
+
+"set grepprg=ag\ --vimgrep\ $* set grepformat=%f:%l:%c:%m
