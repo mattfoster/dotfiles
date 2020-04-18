@@ -3,11 +3,10 @@
     email = "{{ .email }}"
 [diff]
 [color]
-    ui = auto
+	ui = true
 [alias]
     st = status
-    ci = commit
-    co = checkout
+    ci = commit co = checkout
     di = diff
     dc = diff --cached
     amend = commit --amend
@@ -26,6 +25,7 @@
     b = branch
     ds = diff --stat=160,120
     dh1 = diff HEAD~1
+    patch = !git --no-pager diff --no-color
 
 [format]
     pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
@@ -39,3 +39,14 @@
 	helper = osxkeychain
 [core]
 	editor = /usr/local/bin/nvim
+	pager = diff-so-fancy | less --tabs=4 -RFX
+[color "diff-highlight"]
+	oldHighlight = red bold 52
+	newHighlight = green bold 22
+[color "diff"]
+	meta = 11
+	frag = magenta bold
+	commit = yellow bold
+	whitespace = red reverse
+[pager]
+    diff = diff-so-fancy | less --tabs=4 -RFXS --pattern '^(Date|added|deleted|modified): '
