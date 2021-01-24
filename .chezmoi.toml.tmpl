@@ -1,3 +1,9 @@
-{{- $email := promptString "email" -}}
+{{- $noninteractive := env "NONINTERACTIVE" | not | not -}}
+
 [data]
+{{- if $noninteractive }}{{
+    email = "mpf@hackerific.net"
+{{- else }}{{
     email = "{{ $email }}"
+{{- end }}
+
