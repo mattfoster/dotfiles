@@ -1,9 +1,9 @@
 {{- $noninteractive := env "NONINTERACTIVE" | not | not -}}
 
 [data]
-{{- if $noninteractive }}{{
+{{- if $noninteractive }}
     email = "mpf@hackerific.net"
-{{- else }}{{
+{{- else }}
     email = "{{ $email }}"
 {{- end }}
 
