@@ -1,6 +1,11 @@
+{{- $noninteractive := env "NONINTERACTIVE" | not | not -}}
 [user]
     name = Matt Foster
+{{- if $noninteractive }}{{
+    email = "mpf@hackerific.net"
+{{- else }}{{
     email = {{ .email }}
+{{- end }}
 [diff]
 [color]
     ui = true
