@@ -4,6 +4,6 @@
 {{- if $noninteractive }}
     email = "mpf@hackerific.net"
 {{- else }}
-    email = "{{ $email }}"
+    email = "{{ promptString "email" }}"
 {{- end }}
 
