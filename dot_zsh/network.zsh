@@ -75,6 +75,6 @@ function pcurl {
 
 # View headers from a GET (not HEAD)
 function headers {
-    curl -I -X GET "$@"
+    curl -k -I -X GET "$@"
 }
 
