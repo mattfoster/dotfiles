@@ -1,77 +1,49 @@
-" Directives for use with: https://github.com/bronson/vim-update-bundles
-" https://raw.github.com/bronson/vim-update-bundles/master/vim-update-bundles
-" Bundle: https://github.com/ervandew/screen.git
-" Bundle: https://github.com/vim-perl/vim-perl.git
-" Bundle: https://github.com/scrooloose/nerdtree.git
-" Bundle: https://github.com/tpope/vim-fugitive.git
-" Bundle: https://github.com/tpope/vim-markdown.git
-" Bundle: https://github.com/tpope/vim-speeddating.git
-" Bundle: https://github.com/tpope/vim-surround.git
-" Bundle: https://github.com/tpope/vim-commentary.git
-" Bundle: https://github.com/tomtom/tlib_vim.git
-" Bundle: https://github.com/MarcWeber/vim-addon-mw-utils.git
-" Bundle: https://github.com/junegunn/vim-easy-align
-" Bundle: https://github.com/ctrlpvim/ctrlp.vim.git
-" Bundle: Railscasts-Theme-GUIand256color
-" Bundle: https://github.com/altercation/vim-colors-solarized.git
-" Bundle: https://github.com/bling/vim-airline.git
-" Bundle: https://github.com/rodjek/vim-puppet.git
-" Bundle: https://github.com/krisajenkins/vim-pipe.git
-" Bundle: https://github.com/takac/vim-hardtime
-" Bundle: https://github.com/kshenoy/vim-signature
-" Bundle: https://github.com/fatih/vim-go.git
-" Bundle: tpope/vim-pathogen
-" Bundle: https://github.com/w0rp/ale.git
-" Bundle: https://github.com/junegunn/goyo.vim
-" Bundle: https://github.com/junegunn/limelight.vim
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-call pathogen#infect()
+call plug#begin()
 
-" allow backspacing over everything in insert mode
-set backspace=indent,eol,start
+Plug 'tpope/vim-sensible'               " Sensible defaults
+Plug 'tpope/vim-surround'               " Surround things with other things
+Plug 'tpope/vim-commentary'             " Comment stuff out
+Plug 'ctrlpvim/ctrlp.vim'               " Fuzzy file finder
+Plug 'bling/vim-airline'                " Pretty status bar
+Plug 'takac/vim-hardtime'               " Disable/toggle arrow keys
+Plug 'kshenoy/vim-signature'            " Navigate marks
+Plug 'junegunn/vim-easy-align'          " Aligment of =>, comments etc
+Plug 'w0rp/ale'                         " Linting
+Plug 'csexton/trailertrash.vim'         " Highlight trailing whitespace
+Plug 'tpope/vim-fugitive'                " Git support
 
-set autoindent           " always set autoindenting on
-set history=50           " keep 50 lines of command line history
-set ruler                " show the cursor position all the time
-set showcmd              " display incomplete commands
-set incsearch            " do incremental searching
-set background=dark
-set showmatch
+" Colourscheme
+Plug 'jpo/vim-railscasts-theme'
+Plug 'altercation/vim-colors-solarized'
+
+" Language support
+Plug 'vim-perl/vim-perl'
+Plug 'fatih/vim-go'
+Plug 'rodjek/vim-puppet'
+
+" Distraction free writing
+Plug 'junegunn/goyo.vim'
+Plug 'junegunn/limelight.vim'
+Plug 'tpope/vim-markdown'
+
+if has('nvim')
+Plug 'ms-jpq/chadtree'                  " File manager
+endif
+
+call plug#end()
+
+set hidden
+set relativenumber
 set ignorecase
 set smartcase
-set hidden               " don't tell me to save a buffer before when I
-set smartindent
-set autoindent
 set expandtab
 
-set laststatus=2
-set fileencoding=utf-8
-set encoding=utf-8
-
-set relativenumber
-
-let g:showmarks_enable=0 " Disable showmarks by default.
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if &t_Co > 2 || has("gui_running")
-  syntax on
-  set hlsearch
-endif
-
-" set background=dark
-" colorscheme railscasts
+" Theme options
+set background=dark
 let g:solarized_termcolors=256
 syntax enable
-set background=dark
 colorscheme solarized
 set t_Co=256
-
-" Theme setting:
-if has("gui_running")
-  set guifont=Monospace\ 9
-  set guioptions=aegim
-endif
 
 " Key mappings:
 map #2 :s/\([A-Z]\)\([A-Z][A-Z]*\)/\1\L\2/g<CR>
@@ -153,12 +125,6 @@ set scrolloff=3
 set backupdir=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 set directory=~/.vim-tmp,~/.tmp,~/tmp,/var/tmp,/tmp
 
-if has("vms")
-  set nobackup          " do not keep a backup file, use versions instead
-else
-  set backup            " keep a backup file
-endif
-
 " GRB: clear the search buffer when hitting return
 :nnoremap <CR> :nohlsearch<cr>
 
@@ -186,9 +152,6 @@ map <leader>F :CommandTFlush<cr>\|:CommandT %%<cr>
 map <leader>f :CommandTFlush<cr>\|:CommandT<cr>
 map <leader>gt :CommandTFlush<cr>\|:CommandT tests<cr>
 
-" Don't use Ex mode, use Q for formatting
-map Q gq
-
 " let g:Powerline_symbols='fancy'
 let g:airline_powerline_fonts = 1
 let g:airline#extensions#tabline#enabled = 1
@@ -208,7 +171,7 @@ let @s=':s/\(.\),$/|mpf|XXX\1,/:s/XXX/\=strftime("%Y-%m-%d")/'
 " quote regex metas
 let @r=':s#\([/.()]\)#[\1]#g'
 
-" Enable Hardtime
+" Disable/Enable Hardtime
 let g:hardtime_default_on = 0
 let g:hardtime_allow_different_key = 1
 let g:hardtime_maxcount = 6
@@ -218,7 +181,7 @@ let g:list_of_disabled_keys = ["<UP>", "<DOWN>", "<LEFT>", "<RIGHT>"]
 :nnoremap <leader>h <Esc>:HardTimeToggle<CR>
 
 " Clean whitespace
-autocmd BufWritePre * :%s/\s\+$//e
+" autocmd BufWritePre * :%s/\s\+$//e
 
 let g:go_version_warning = 0
 
@@ -235,7 +198,8 @@ let g:ale_linters                 = { 'perl': ['perl', 'perlcritic'] }
 let g:ale_perl_perl_options       = '-cW -Ilib -I./'
 let g:ale_perl_perlcritic_options = '--stern'
 
-"autocmd! User GoyoEnter Limelight
-"autocmd! User GoyoLeave Limelight!
 
-"set grepprg=ag\ --vimgrep\ $* set grepformat=%f:%l:%c:%m
+autocmd FileType gitcommit setlocal spell
+autocmd FileType perl setlocal foldmethod=syntax
+autocmd FileType perl setlocal foldenable
+autocmd FileType perl syn region POD start=/^=item/ end=/^=cut/ fold
