@@ -2,6 +2,10 @@
 
 managed with [chezmoi](https://github.com/twpayne/chezmoi/).
 
-## TODO
+## Tools
 
-* [ ] Update and add zsh config (zplug based?)
+* fzf
+* neovim
+* delta
+* zsh
+* zplug
