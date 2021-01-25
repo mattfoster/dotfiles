@@ -37,6 +37,7 @@ set relativenumber
 set ignorecase
 set smartcase
 set expandtab
+set hlsearch " Highlight search results
 
 " Theme options
 set background=dark
