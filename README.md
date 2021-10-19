@@ -8,4 +8,4 @@ managed with [chezmoi](https://github.com/twpayne/chezmoi/).
 * neovim
 * delta
 * zsh
-* zplug
+* zplug - TODO: abandoned, so replace with something like zinit.
