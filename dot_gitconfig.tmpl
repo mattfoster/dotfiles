@@ -19,7 +19,7 @@
     ff = merge --ff-only
     pullff = pull --ff-only
     noff = merge --no-ff
-    l = log --graph --abbrev-commit --date=relative
+    l = log --graph --abbrev-commit --date=relative 
     la = !git l --all
     fa = fetch --all
     pom = push origin master
@@ -28,21 +28,12 @@
     dh1 = diff HEAD~1
     patch = !git --no-pager diff --no-color
 
-[format]
-    pretty=format:%C(yellow)%h%Creset -%C(red)%d%Creset %s %Cgreen(%ar) %C(bold blue)<%an>%Creset
-
-[merge]
-    tool = vimdiff
-
 [push]
-    default = simple
-[credential]
-    helper = osxkeychain
-[core]
-    pager = delta
+	default = current
+	autoSetupRemote = true
 
 [interactive]
-    diffFilter = delta --color-only
+   diffFilter = delta --color-only
 
 [delta]
     features = decorations
@@ -52,3 +43,17 @@
     commit-decoration-style = bold yellow box ul
     file-style = bold yellow ul
     file-decoration-style = none
+
+{{ if eq .chezmoi.os "darwin" }}
+[user]
+  signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIFJaOBdFLrXXMz6tVAH+kKit+WSvMK7+ui/5ro+hZwHY
+
+[gpg]
+  format = ssh
+
+[gpg "ssh"]
+  program = "/Applications/1Password.app/Contents/MacOS/op-ssh-sign"
+
+[commit]
+  gpgsign = true
+{{ end }}
