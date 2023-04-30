@@ -27,6 +27,10 @@ Plug 'junegunn/limelight.vim'
 Plug 'tpope/vim-markdown'
 
 if has('nvim')
+
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim', { 'tag': '0.1.0' }
+Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'ms-jpq/chadtree'                  " File manager
 endif
 
@@ -34,6 +38,7 @@ call plug#end()
 
 set hidden
 set relativenumber
+set number
 set ignorecase
 set smartcase
 set expandtab
@@ -70,7 +75,7 @@ if &term =~ "xterm.*"
 endif
 
 if has("autocmd")
-  filetype plugin indent on
+  filetype indent plugin on
   " Filetype overrides.
   "see header files as 'c' header, instead of cpp.
   au BufRead,BufNewFile *.h  setfiletype c
